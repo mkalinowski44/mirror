@@ -1,0 +1,399 @@
+$bg-color: black;
+$accent-color: #00fdff;
+$accent-color-secondary: #ff0000;
+$invalid-color: rgb(255,0,0);
+
+
+@font-face {
+    font-family: 'Audiowide';
+    src: url('../fonts/Audiowide-Regular.ttf');
+    font-weight: 400;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@mixin  show() {
+    animation-name: show;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+}
+* {
+    transition: opacity .1s linear, color .1s linear, border-color .1s linear, background-color .1s linear;
+}
+body {
+    background-color: $bg-color;
+    margin: 0;
+    color: $accent-color;
+    font-size: 18px;
+    padding: 25px;
+    padding-top: 75px;
+    height: 100vh;
+    box-sizing: border-box;
+    font-family: 'Audiowide';
+    box-shadow: inset 0 0 0 1px $accent-color;
+    transition: opacity .2s linear;
+    @include show();
+}
+#titleBarContainer {
+    box-sizing: border-box;
+    padding-top: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+
+    #titleBar {
+        height: 29px;
+        display: flex;
+        overflow: hidden;
+        justify-content: space-between;
+        align-items: center;
+        background-color: black;
+
+        #title {
+            padding-left: 25px;
+            box-sizing: border-box;
+            width: 100%;
+            -webkit-app-region: drag;
+        }
+        #options {
+            flex-shrink: 0;
+            flex-grow: 0;
+            box-sizing: border-box;
+            padding-right: 20px;
+            display: flex;
+
+            button {
+                position: relative;
+
+                &:nth-child(1) {
+                    z-index: 2;
+                }
+                &:nth-child(2) {
+                    z-index: 1;
+                }
+                &:nth-child(3) {
+                    z-index: 0;
+                }
+            }
+            #close-button {
+                border-color: $invalid-color !important;
+
+                &:hover {
+                    background-color: rgba($invalid-color, 0.15) !important;
+                }
+
+                &:after, &:before {
+                    border-color: $invalid-color !important;
+                }
+            }
+        }
+    }
+    #optionBar {
+        width: 100%;
+        height: 20px;
+        display: flex;
+        overflow: hidden;
+        justify-content: flex-start;
+        align-items: stretch;
+        background-color: $bg-color;
+        padding-left: 14px;
+        box-sizing: border-box;
+
+        a {
+            border-width: 0 !important;
+            margin: 0;
+            padding: 0 10px;
+            font-size: 12px;
+            font-family: 'Verdana';
+
+            &:hover {
+                border-bottom-width: 1px !important;
+            }
+
+            &:after, &:before {
+                display: none;
+            }
+        }
+    }
+}
+#wrapper {
+    border: 1px solid $accent-color;
+    box-sizing: border-box;
+    padding: 20px 40px;
+    height: 100%;
+}
+#chat-form{
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    display: none;
+}
+#chatWindow {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    padding-right: 2px;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    mask-image: linear-gradient(to bottom, transparent 0%,rgba(255,255,255,1) 2%,rgba(255,255,255,1) 98%,transparent 100%);
+    
+    div:not(div *) {
+        &:first-child {
+            margin-top: 0;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+#message {
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 2px;
+    opacity: 0.5;
+
+    &.active {
+        opacity: 1;
+    }
+}
+#chat-text {
+    background-color: $bg-color;
+    color: $accent-color;
+    border: none;
+    outline: none;
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    max-height: 200px;
+    min-height: 95px;
+    height: 95px;
+    box-sizing: border-box;
+    padding: 0px;
+    font-size: 18px;
+    font-family: 'Audiowide';
+}
+button, a {
+    background-color: $bg-color;
+    color: $accent-color;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 1px solid $accent-color;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    outline: none;
+    margin-right: 7px;
+    font-family: 'Audiowide';
+
+    &:hover {
+        background-color: rgba($accent-color, 0.15);
+    }
+
+    &:before, &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 10px;
+        height: 20px;
+        background-color: $bg-color;
+        transform: rotate(-45deg);
+    }
+    &:before {
+        right: -3px;
+        top: -8px;
+        border-left: 1px solid $accent-color;
+    }
+    &:after {
+        left: -3px;
+        bottom: -8px;
+        border-right: 1px solid $accent-color;
+    }
+}
+.chatRow {
+    margin: 20px 0;
+    position: relative;
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    @include show();
+
+    
+    input {
+        background-color: $bg-color;
+        color: $accent-color;
+        border: none;
+        outline: none;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0px;
+        font-size: 18px;
+        font-family: 'Audiowide';
+    }
+
+    &.invalid {
+        color: $invalid-color;
+
+        fieldset {
+            border: 1px solid $invalid-color;
+
+            input, textarea {
+                color: $invalid-color !important;
+            }
+
+            &:before {
+                border-left: 1px solid $invalid-color;
+            }
+            &:after {
+                border-right: 1px solid $invalid-color;
+            }
+
+            legend {
+                border: 1px solid $invalid-color;
+
+                &:after, &:before {
+                    border-left: 10px solid $invalid-color;
+                    border-right: 10px solid $invalid-color;
+                }
+            }
+        }
+    }
+
+    &.accent {
+        color: $accent-color-secondary;
+
+        fieldset {
+            border: 1px solid $accent-color-secondary;
+
+            input, textarea {
+                color: $accent-color-secondary !important;
+            }
+
+            &:before {
+                border-left: 1px solid $accent-color-secondary;
+            }
+            &:after {
+                border-right: 1px solid $accent-color-secondary;
+            }
+
+            legend {
+                border: 1px solid $accent-color-secondary;
+
+                &:after, &:before {
+                    border-left: 10px solid $accent-color-secondary;
+                    border-right: 10px solid $accent-color-secondary;
+                }
+            }
+        }
+    }
+
+    fieldset {
+        border: 1px solid $accent-color;
+        font-size: 18px;
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+
+        &:before, &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: $bg-color;
+            transform: rotate(-45deg);
+        }
+        &:before {
+            right: -12px;
+            top: 6px;
+            border-left: 1px solid $accent-color;
+        }
+        &:after {
+            left: -8px;
+            bottom: -10px;
+            border-right: 1px solid $accent-color;
+        }
+
+        legend {
+            padding: 5px 10px;
+            border: 1px solid $accent-color;
+            line-height: 1em;
+
+            &:after, &:before {
+                content: "";
+                display: block;
+                position: relative;
+                border-left: 10px solid $accent-color;
+                border-right: 10px solid $accent-color;
+                box-sizing: border-box;
+                background-color: $bg-color;
+                height: 1px;
+            }
+            &:after {
+                top: 6px;
+            }
+            &:before {
+                top: -6px;
+            }
+
+            small {
+                opacity: 0.5;
+            }
+        }
+    }
+}
+
+.statusRow {
+    border: 1px solid $accent-color;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    margin: 20px 0;
+    @include show();
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .time {
+        opacity: 0.5;
+    }
+
+    &.invalid {
+        color: $invalid-color;
+        border: 1px solid $invalid-color;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+    background-color: transparent;
+}
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+    outline: 1px solid $accent-color;
+}
+::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-right: 1px solid $accent-color;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba($accent-color, 0.1);
+}

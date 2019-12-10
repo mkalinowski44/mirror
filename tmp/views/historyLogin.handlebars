@@ -1,0 +1,14 @@
+<div id="chatWindow">
+    <form method="POST" class="form" action="history">
+        {{#if err}}
+        <div class="chatRow invalid" id="passwordRow">
+        {{else}}
+        <div class="chatRow" id="passwordRow">
+        {{/if}}
+            <fieldset>
+                <legend>Podaj hasło</legend>
+                <input type="password" id="password" name="password" class="form-control" type="text">
+            </fieldset>
+        </div>
+    </form>
+</div>

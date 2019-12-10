@@ -1,0 +1,12 @@
+<div id="chatWindow">
+    {{#if check}}
+        <div class="statusRow">
+            Udało się zainicjować ustawienia.
+        </div>
+    {{else}}
+        <div class="statusRow invalid">
+            Wystąpił błąd podczas inicjacji ustawień, sprawdź plik konfiguracyjny.
+        </div>
+    {{/if}}
+    <a href="/">Chat</a>
+</div>

@@ -1,0 +1,10 @@
+{{{port}}}
+{{#if scripts }}
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+{{#each scripts}}
+<script src="/js/{{ this }}"></script>
+{{/each}}
+<script>if (window.module) module = window.module;</script>
+{{/if}}
+</body>
+</html>

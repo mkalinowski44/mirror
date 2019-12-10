@@ -1,0 +1,26 @@
+<div id="chatWindow">
+    {{#if data}}
+        {{#each data}}
+            {{#if status}}
+                <div class="statusRow">
+                    <div class="time"><small>{{ time }}</small></div>
+                    <div class="text">{{ message }}</div>
+                </div>
+            {{/if}}
+            {{#if msg}}
+                {{#if isEgo}}
+                <div class="chatRow">
+                {{else}}
+                <div class="chatRow accent">
+                {{/if}}
+                    <fieldset>
+                        <legend>{{ nick }} - <small>{{ time }}</small></legend>
+                        {{ message }}
+                    </fieldset>
+                </div>
+            {{/if}}
+        {{/each}}
+    {{else}}
+        Brak historii do wyświetlenia
+    {{/if}}
+</div>

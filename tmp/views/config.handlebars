@@ -1,0 +1,47 @@
+<div id="chatWindow">
+    {{#if data}}
+    
+    <form method="POST" action="init">
+        <div class="chatRow">
+            <fieldset>
+                <legend>Hasło</legend>
+                <input type="password" name="password" placeholder="••••">
+            </fieldset>
+        </div>
+        <div class="chatRow">
+            <fieldset>
+                <legend>Nowe hasło</legend>
+                <input type="password" name="newPassword" placeholder="••••">
+            </fieldset>
+        </div>
+        <div class="chatRow">
+            <fieldset>
+                <legend>Ego</legend>
+                <input type="text" name="ego" placeholder="{{data.ego}}">
+            </fieldset>
+        </div>
+        <div class="chatRow">
+            <fieldset>
+                <legend>Alter Ego</legend>
+                <input type="text" name="alterEgo" placeholder="{{data.alterEgo}}">
+            </fieldset>
+        </div>
+        <div class="chatRow">
+            <fieldset>
+                <legend>Ego color</legend>
+                <input type="text" name="egoColor" placeholder="{{data.egoColor}}">
+            </fieldset>
+        </div>
+        <div class="chatRow">
+            <fieldset>
+                <legend>Alter Ego color</legend>
+                <input type="text" name="alterEgoColor" placeholder="{{data.alterEgoColor}}">
+            </fieldset>
+        </div>
+        <button type="submit">Wyślij</button>
+    </form>
+
+    {{else}}
+        Brak konfiguracji do wyświetlenia
+    {{/if}}
+</div>

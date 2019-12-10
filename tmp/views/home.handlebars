@@ -1,0 +1,43 @@
+<form id="join-form" action="#">
+    <div class="chatRow" id="passwordRow">
+        <fieldset>
+            <legend>Podaj hasło</legend>
+            <input type="password" id="password" class="form-control" type="text">
+        </fieldset>
+    </div>
+    <a href="/help">?</a>
+    <a href="/info">i&nbsp;</a>
+</form>
+
+<form id="chat-form" action="#">
+    <div id="chatWindow"></div>
+
+    <div id="message">
+        <div class="chatRow" id="messageRow">
+            <fieldset>
+                <legend id="nickLabel"></legend>
+                <textarea id="chat-text"></textarea>
+            </fieldset>
+        </div>
+    </div>
+</form>
+
+<script id="chat-status-template" type="text/x-handlebars-template">
+    <div class="statusRow">
+        <div class="time"><small>\{{ time }}</small></div>
+        <div class="text">\{{ status }}</div>
+    </div>
+</script>
+
+<script id="chat-message-template" type="text/x-handlebars-template">
+    \{{#if isEgo}}
+    <div class="chatRow">
+    \{{else}}
+    <div class="chatRow accent">
+    \{{/if}}
+        <fieldset>
+            <legend>\{{ nick }} - <small>\{{ time }}</small></legend>
+            \{{ message }}
+        </fieldset>
+    </div>
+</script>
