@@ -17,7 +17,7 @@
     "cryptr": "^4.0.2",
     "electron": "^3.0.11",
     "express": "^4.14.0",
-    "express-handlebars": "^3.0.0",
+    "express-handlebars": "^5.3.1",
     "socket.io": "^1.4.8"
   },
   "devDependencies": {
